@@ -21,7 +21,7 @@ type Rekening struct {
 
 type PredictionText struct {
 	gorm.Model
-	Text string `gorm:"type:longtext"`
+	Text string `gorm:"type:longtext" json:"text"`
 }
 
 type Laporan struct {

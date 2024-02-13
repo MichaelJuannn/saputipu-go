@@ -8,10 +8,10 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func CreatePrediction(c *fiber.Ctx) error {
+func Create(c *fiber.Ctx) error {
 	db := database.DB
 	prediction := new(models.PredictionText)
-	err := c.BodyParser(prediction)
+	err := c.BodyParser(&prediction)
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{"status": err})
 	}
@@ -20,5 +20,5 @@ func CreatePrediction(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{"status": err})
 	}
-	return c.SendString(prediction.Text)
+	return c.Status(200).JSON(prediction)
 }
